@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts" (ionSlideDidChange)="slideChanged(this)">
+    <ion-slide *ngFor="let plan of timeevents$ | async">
+      <div>
+        <h3 class="plan-title">{{ plan.plan }}</h3>
+        <app-remain-time 
+          [nowTime]="nowTime"
+          [datetime]='((plan.list.length > 0) ? plan.list[0].datetime : "{}")'
+          [eventid]='((plan.list.length > 0) ? plan.list[0].id : -1)'
+        ></app-remain-time>
+        <div class="event-group">
+          <div class="event-list" *ngFor="let data of plan.list | keyvalue">
+            <app-event [eventdata]="data" [totallist]="plan.list" (editEvent)="parentEventHandler($event)"></app-event>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide class="add-plan-page">
+      <ion-fab vertical="center" horizontal="center" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="share" (click)="addPlan()"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

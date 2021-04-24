@@ -1,0 +1,25 @@
+/* Without setting height the slides will take up the height of the slide's content */
+ion-slides {
+    height: 100%;
+    position: relative;
+    div {
+        position: relative;
+        .plan-title {
+            margin-top: 4rem;
+        }
+        .remain-time {
+            margin-top: 5rem;
+        }
+        .event-group {
+            height: 50vh;
+            overflow-y: auto;
+        }
+    }
+    h3.plan-title {
+        text-align: left;
+        padding-left: 4rem;
+    }
+    .add-plan-page {
+        font-size: 5rem;
+    }
+}

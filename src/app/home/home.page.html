@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+
+  <div class="app-title">
+    <h1>今日の予定</h1>
+  </div>
+  <app-slides #slides [nowTime]="nowTime" (editEvent)="eventEditHandler($event)"></app-slides>
+
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-icon name="menu" class="main-icon" color="light" (click)="toggleView()"></ion-icon>
+  </ion-fab>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-icon name="settings" class="main-icon" color="light"></ion-icon>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-icon name="add-circle" class="main-icon" color="primary" (click)="newEvent()"></ion-icon>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-icon name="trash" class="main-icon" color="danger" md="ios-trash-outline" (click)="deletePlanModal()"></ion-icon>
+  </ion-fab>
+</ion-content>

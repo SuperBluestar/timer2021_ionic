@@ -1,0 +1,30 @@
+ion-card {
+    width: 60vw;
+    margin-right: 35vw;
+    &.zoom-mode {
+        width: 90vw;
+        margin-right: 16px;
+    }
+    &.emphersize {
+        background-color: blue;
+        color: white;
+        ion-card-title {
+            color: white;
+        }
+    }
+}
+
+.dotline {
+    margin-left: 50%;
+    border-left: 6px dotted black;
+}
+
+ion-card-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+ion-card {
+    background-color: #ffffff;
+    border: 3px solid black;
+}
