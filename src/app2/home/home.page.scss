@@ -1,0 +1,14 @@
+ion-content {
+    h1 {
+        margin-top: 2rem;
+        text-align: center;
+    }
+    ion-slides {
+        height: calc(100% - 10rem);
+        position: relative;
+    }
+    app-one-plan {
+        height: 100%;
+        width: 100%;
+    }
+}

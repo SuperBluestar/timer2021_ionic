@@ -1,0 +1,30 @@
+p {
+    margin-top: 5rem;
+}
+p.remain-time {
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+    line-height: 3rem;
+}
+.event-group {
+    height: 70%;
+    width: 90%;
+    margin-left: 5%;
+    overflow: hidden;
+    background-color: pink;
+    position: relative;
+    app-event {
+        position: absolute;
+        left: 0%;
+        width: 100%;
+        // z-index: 10;
+    }
+    .dot-line {
+        position: absolute;
+        left: 50%;
+        border-left: 6px dotted black;
+        top: 0%;
+        bottom: 0%;
+    }
+}

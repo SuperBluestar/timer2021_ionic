@@ -5,12 +5,17 @@
         <h3 class="plan-title">{{ plan.plan }}</h3>
         <app-remain-time 
           [nowTime]="nowTime"
-          [datetime]='((plan.list.length > 0) ? plan.list[0].datetime : "{}")'
-          [eventid]='((plan.list.length > 0) ? plan.list[0].id : -1)'
+          [datetime]='((plan.list.length > 1) ? plan.list[1].datetime : "{}")'
+          [eventid]='((plan.list.length > 1) ? plan.list[1].id : -1)'
         ></app-remain-time>
         <div class="event-group">
           <div class="event-list" *ngFor="let data of plan.list | keyvalue">
-            <app-event [eventdata]="data" [totallist]="plan.list" (editEvent)="parentEventHandler($event)"></app-event>
+            <app-event 
+              [nowTime]="nowTime"
+              [eventdata]="data" 
+              [totallist]="plan.list" 
+              (editEvent)="parentEventHandler($event)"
+            ></app-event>
           </div>
         </div>
       </div>

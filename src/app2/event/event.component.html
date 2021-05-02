@@ -1,0 +1,31 @@
+<ion-card 
+  [ngStyle]="{'top': offsetY + 'px', 'z-index': planId == '-1' ? '11' : (editing ? '100' : 'inherit')}" 
+  (click)="editTime(e)"
+  [ngClass]="{'active': editing}"
+>
+  <ion-card-header>
+    <ion-card-title>{{ title }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="date-time" size="2">
+          {{ datetime }}
+        </ion-col>
+        <ion-col class="time-time">
+          {{ timetime }}
+        </ion-col>
+        <ion-col size="2">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+
+  <ion-fab vertical="top" horizontal="end">
+    <ion-icon id="trash" name="trash" class="main-icon" (click)="alert()"></ion-icon>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" (click)="alert()">
+    <ion-icon id="add" name="add" class="main-icon"></ion-icon>
+  </ion-fab>
+</ion-card>

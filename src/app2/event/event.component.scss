@@ -1,0 +1,41 @@
+ion-card {
+    width: 100%;
+    margin: 0%;
+    &.active {
+        background-color: lightblue !important;
+        z-index: 100;
+    }
+    ion-card-title {
+        font-size: 1.5rem;
+        color: rgb(58, 58, 58);
+    }
+    .date-time {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgb(27, 27, 27);
+    }
+    .time-time {
+        font-size: 2rem;
+        font-weight: 800;
+        color: black;
+    }
+    ion-icon[name=trash], ion-icon[name=add] {
+        color: gray;
+        font-size: 1rem;
+    }
+}
+
+.dotline {
+    margin-left: 50%;
+    border-left: 6px dotted black;
+}
+
+ion-card-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+ion-card {
+    background-color: #ffffff;
+    border: 3px solid black;
+}

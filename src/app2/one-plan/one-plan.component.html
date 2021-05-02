@@ -1,0 +1,30 @@
+<ion-content>
+  <p>{{ this.title }}</p>
+  <p class="remain-time">01:14:14</p>
+  <div 
+    class="event-group"
+    (touchstart)="onTouchStart($event)"
+    (touchmove)="onTouchMove($event)"
+    (touchend)="onTouchEnd($event)"
+  >
+    <ng-template  [ngIf]="events.length > 0">
+      <div class="dot-line"></div>
+    </ng-template>
+    <app-event 
+      [ngStyle]="{'top': '0px'}" 
+      [reservedData]="{id: -1, title: 'Time Now', reservedTime: 'now'}"
+      [planId]="-1"
+    ></app-event>
+    <app-event 
+      [offsetY]="(currentY + deltaY)"
+      [dragingYTime]="deltaYTime"
+      *ngFor="let data of events"
+      [ngStyle]="{'top': calculateTop(data)}" 
+      [reservedData]="data"
+      [planId]="plan_id"
+      (onmousemove)="onMove($event)"
+      [editingPlanId]="editingPlanId"
+      [editingEventId]="editingEventId"
+    ></app-event>
+  </div>
+</ion-content>

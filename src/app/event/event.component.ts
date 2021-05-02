@@ -9,13 +9,13 @@ import { removeEvent, togglePS } from '../timeevent.actions';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss'],
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, OnChanges {
 
   private title: string = "";
   private date: string = "";
   private time: string = "";
-  private marginTop: string = "50px";
-  private marginTop_gaptime: string = "25px";
+  private marginTop: string = "0px";
+  private marginTop_gaptime: string = "0px";
   private gap_date: string = "";
   private gap_time: string = "";
   private id: number = -1;
@@ -44,11 +44,32 @@ export class EventComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes) {
+    // console.log(":A")
+    if (this.eventdata.key == 1) {
+      let hour = Math.floor((+this.datetime - +this.nowTime) / 1000 / 3600 % 24);
+      let minute = Math.floor((+this.datetime - +this.nowTime) / 1000 / 60 % 60);
+      let sec = Math.floor((+this.datetime - +this.nowTime) / 1000 % 60);
+      this.gap_time = `${hour > 10 ? "" : "0"}${hour} : ${minute > 10 ? "" : "0"}${minute} : ${sec > 10 ? "" : "0"}${sec}`;
+    }
+    if (this.eventdata.key == 0) {
+      // console.log(new Date(this.nowTime).getDate())
+      this.date = `${new Date(this.nowTime).getMonth() + 1} / ${new Date(this.nowTime).getDate()}`;
+      let hour = new Date(this.nowTime).getHours();
+      let minute = new Date(this.nowTime).getMinutes();
+      let sec = new Date(this.nowTime).getSeconds();
+      this.time = `${hour > 10 ? "" : "0"}${hour} : ${minute > 10 ? "" : "0"}${minute} : ${sec > 10 ? "" : "0"}${sec}`;
+    }
+  }
+
   showLayout() {
+    if (this.id == -1) {
+      return;
+    }
     if (this.zoomViewMode) {
       const seconds = Math.floor((+this.datetime - +this.prevtime) / 1000);
-      this.marginTop = `${Math.min(seconds / 432, 300)}px`;
-      this.marginTop_gaptime = `${Math.min(seconds / 432, 300) / 2 - 8}px`;
+      this.marginTop = `${Math.min(seconds / 432, 5300)}px`;
+      this.marginTop_gaptime = `${Math.min(seconds / 432, 5300) / 2 - 8}px`;
       let datte = Math.floor((+this.datetime - +this.prevtime) / 1000 / 3600 / 24);
       this.gap_date = datte === 0 ? "" : `${datte}d`;
       let hour = Math.floor((+this.datetime - +this.prevtime) / 1000 / 3600 % 24);
@@ -84,10 +105,16 @@ export class EventComponent implements OnInit {
   editEvent: EventEmitter<string> = new EventEmitter<string>();
 
   editEventPrompt() {
+    if (this.id == -1) {
+      return;
+    }
     this.editEvent.emit(this.eventdata);
   }
 
   async removeEvent() {
+    if (this.id == -1) {
+      return;
+    }
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Delete event?',
@@ -112,10 +139,12 @@ export class EventComponent implements OnInit {
     await alert.present();
   }
 
-  addPS() {
-    this.store.dispatch(togglePS({
-      id: this.id,
-    }));
+  addPS = () => {
+    if (this.id != -1) {
+      this.store.dispatch(togglePS({
+        id: this.id,
+      }));
+    }
   }
 
 }

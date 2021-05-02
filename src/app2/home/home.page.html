@@ -1,0 +1,19 @@
+<ion-content>
+  <h1>今日の予定</h1>
+  <ion-slides pager="true" ionSlideDidChange="">
+    <ion-slide *ngFor="let plan of timeplans$ | async">
+      <app-one-plan [splan]="plan"></app-one-plan>
+    </ion-slide>
+  </ion-slides>
+  
+</ion-content>
+
+<ion-fab vertical="top" horizontal="start" slot="fixed">
+  <ion-icon name="menu" class="main-icon" color="light" (click)="toggleView()"></ion-icon>
+</ion-fab>
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-icon name="settings" class="main-icon" color="light"></ion-icon>
+</ion-fab>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-icon name="trash" class="main-icon" color="danger" md="ios-trash-outline" (click)="deletePlanModal()"></ion-icon>
+</ion-fab>
